@@ -152,3 +152,79 @@ function findName(name, array) {
 }
 
 all.lastIndexOf("Stephen")
+
+//Purpose: Create function that only returns even elements from Array
+//Signature: ([Array]) -> [Array]
+//Example:
+//evenElements([1, 2, 3, 4]) -> [2, 4]
+function evenElements(array) {
+	var toReturn = [];
+	for (var x = 0; x < array.length; x++) {
+		if (array[x] % 2 === 0) {
+			toReturn.push(array[x]);
+		}
+	}
+	return toReturn;
+}
+
+//console.log(evenElements([1, 2, 3, 4]));
+//console.log(evenElements([1, 3, 8, 5]));
+
+
+//Purpose: same as above, but odd
+
+function oddElements(array) {
+	var toReturn = [];
+	for (var x = 0; x < array.length; x++) {
+		if (array[x] % 2 != 0) {
+			toReturn.push(array[x]);
+		}
+	}
+	return toReturn;
+}
+
+//console.log(oddElements([1,2,3,4]));
+//console.log(oddElements([1,2,4,6]));
+
+//Purpose: Get a function and change the array based on that function
+//Signature: ([Array], Function()) -> [Array]
+//Examples:
+//mapArray([5,6], function(x) { return 2*x; }) should return [10,12]
+
+function mapArray(array, func) {
+	// Create empty array to be returned
+	var returnArray = [];
+
+	/*.forEach() goes through the entire array
+	Inside .forEach(), we create a function that pushes returned values to returnArray
+	Inside of push is the function inputted that any user can change
+	*/
+	array.forEach(function(x) {
+		returnArray.push(func(x));
+	});
+
+	return returnArray;
+}
+
+//console.log(mapArray([5, 6], function(x) { return 2*x; }));
+//console.log(mapArray([1, 2, 3, 4], function(s) { return s + 3; }));
+
+function filterArray(array, func) {
+	// Create emptry array to be returned
+	var returnArray = [];
+
+	/*In the forEach, we create a function that pushes only the values that return true from user-inputted function.
+	User-inputted function must be a function that returns true/false
+	*/
+	array.forEach(function(x) {
+		if (func(x) === true) {
+			returnArray.push(x);
+		}
+	});
+	return returnArray;
+}
+
+//console.log(filterArray([5, 6, 7], function(x) { return x >= 6 }));
+
+console.log([5, 6].map(function(x) { return 2 * x; })); //Same functionality as mapArray
+console.log([5, 6, 7].filter(function(x) { return x >= 6; })); //Same functionality as filterArray
